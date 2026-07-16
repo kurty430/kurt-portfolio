@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurt Dex Salva — IT Specialist &amp; Systems Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:        #0B1F17;
+    --pine-deep:   #071510;
+    --surface:     #12281F;
+    --surface-2:   #17332688;
+    --paper:       #F5F2EA;
+    --paper-dim:   #E8E4D9;
+    --fairway:     #4C8B63;
+    --fairway-lt:  #8FC6A2;
+    --brass:       #C9A227;
+    --brass-lt:    #E4C862;
+    --ink:         #0B1F17;
+    --line:        rgba(232,228,217,0.14);
+    --line-dark:   rgba(11,31,23,0.12);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  a{color:inherit; text-decoration:none;}
+  section{position:relative;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){.wrap{padding:0 20px;}}
+
+  ::selection{background:var(--brass); color:var(--pine-deep);}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(11,31,23,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1120px; margin:0 auto; padding:0 32px;
+    height:60px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em;
+    color:var(--fairway-lt); display:flex; align-items:center; gap:8px;
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--fairway-lt); box-shadow:0 0 6px var(--fairway-lt); animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+  .nav-links{display:flex; gap:28px; font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;}
+  .nav-links a{color:var(--paper-dim); opacity:0.75; transition:opacity 0.2s, color 0.2s; padding:4px 0; border-bottom:1px solid transparent;}
+  .nav-links a:hover{opacity:1; color:var(--fairway-lt); border-color:var(--fairway-lt);}
+  @media (max-width:640px){.nav-links{display:none;}}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    background:radial-gradient(ellipse 900px 500px at 15% -10%, #16352544, transparent),
+               linear-gradient(180deg, var(--pine) 0%, var(--pine-deep) 100%);
+    color:var(--paper);
+    padding:132px 0 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute; inset:0; opacity:0.06;
+    background-image:
+      linear-gradient(var(--fairway-lt) 1px, transparent 1px),
+      linear-gradient(90deg, var(--fairway-lt) 1px, transparent 1px);
+    background-size:64px 64px;
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; padding-bottom:64px;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--fairway-lt); margin-bottom:22px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--fairway-lt);}
+  h1.name{
+    font-family:var(--font-display);
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(48px, 8vw, 92px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    max-width:820px;
+  }
+  h1.name em{font-style:italic; font-weight:400; color:var(--fairway-lt);}
+  .role-line{
+    margin-top:22px;
+    font-size:clamp(17px, 2vw, 21px);
+    color:var(--paper-dim);
+    max-width:600px;
+    font-weight:400;
+  }
+  .role-line strong{color:var(--paper); font-weight:500;}
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:28px;
+    margin-top:40px; padding-top:28px;
+    border-top:1px solid var(--line);
+    font-family:var(--font-mono); font-size:12.5px; color:var(--paper-dim);
+  }
+  .hero-meta span{display:flex; align-items:center; gap:8px;}
+  .hero-meta b{color:var(--paper); font-weight:500;}
+
+  /* ---------- STATUS STRIP (signature element) ---------- */
+  .status-strip{
+    margin-top:56px;
+    border-top:1px solid var(--line);
+    background:var(--surface);
+  }
+  .status-strip-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0 14px;
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--paper-dim); opacity:0.6;
+  }
+  .status-grid{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+  }
+  @media (max-width:860px){.status-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:480px){.status-grid{grid-template-columns:1fr;}}
+  .status-card{
+    padding:22px 24px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .status-grid .status-card:nth-child(4n){border-right:none;}
+  .status-card .sc-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .status-card .sc-name{font-family:var(--font-mono); font-size:12px; color:var(--paper); letter-spacing:0.01em;}
+  .pill{
+    font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.06em; text-transform:uppercase;
+    padding:3px 8px; border-radius:20px; display:inline-flex; align-items:center; gap:5px;
+    background:rgba(140,198,162,0.12); color:var(--fairway-lt); border:1px solid rgba(143,198,162,0.3);
+  }
+  .pill i{width:5px;height:5px;border-radius:50%;background:var(--fairway-lt); box-shadow:0 0 5px var(--fairway-lt);}
+  .sc-uptime{font-family:var(--font-mono); font-size:22px; color:var(--paper); font-weight:600;}
+  .sc-label{font-size:10.5px; color:var(--paper-dim); opacity:0.55; margin-top:2px;}
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:44px;
+  }
+  .section-num{font-family:var(--font-mono); font-size:12px; color:var(--fairway); opacity:0.7;}
+  h2.section-title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(28px,3.4vw,38px);
+    letter-spacing:-0.01em;
+  }
+  .section-line{flex:1; height:1px; background:var(--line-dark);}
+
+  section.on-paper{padding:96px 0;}
+  section.on-paper + section.on-paper{border-top:1px solid var(--line-dark);}
+
+  /* ---------- ABOUT ---------- */
+  .about-body{display:grid; grid-template-columns:1.4fr 1fr; gap:64px;}
+  @media (max-width:800px){.about-body{grid-template-columns:1fr; gap:32px;}}
+  .about-lede{font-family:var(--font-display); font-size:24px; line-height:1.4; font-weight:500; color:var(--pine);}
+  .about-lede em{font-style:italic; color:var(--fairway);}
+  .about-sub{margin-top:20px; color:#3A4B42; font-size:15.5px; line-height:1.7; max-width:52ch;}
+  .stack-box{background:var(--pine); color:var(--paper); border-radius:6px; padding:26px 28px;}
+  .stack-box h4{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fairway-lt); margin-bottom:16px;}
+  .stack-list{display:flex; flex-wrap:wrap; gap:8px;}
+  .stack-list span{
+    font-family:var(--font-mono); font-size:12px; padding:6px 11px;
+    background:rgba(255,255,255,0.06); border:1px solid var(--line); border-radius:4px; color:var(--paper-dim);
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-item{
+    display:grid; grid-template-columns:180px 1fr; gap:36px;
+    padding:32px 0; border-top:1px solid var(--line-dark);
+  }
+  .exp-item:last-child{border-bottom:1px solid var(--line-dark);}
+  @media (max-width:700px){.exp-item{grid-template-columns:1fr; gap:10px;}}
+  .exp-date{font-family:var(--font-mono); font-size:12.5px; color:var(--fairway); padding-top:4px;}
+  .exp-role{font-family:var(--font-display); font-size:22px; font-weight:600; color:var(--pine);}
+  .exp-org{font-size:14px; color:#6b7d73; margin-top:2px; margin-bottom:14px; font-weight:500;}
+  .exp-desc{font-size:15px; line-height:1.75; color:#3A4B42; max-width:64ch;}
+  .exp-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .exp-tags span{font-family:var(--font-mono); font-size:11px; color:var(--fairway); background:rgba(76,139,99,0.08); border:1px solid rgba(76,139,99,0.25); padding:4px 9px; border-radius:4px;}
+
+  /* ---------- PROJECTS / SYSTEMS ---------- */
+  .sys-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--line-dark); border:1px solid var(--line-dark);}
+  @media (max-width:700px){.sys-grid{grid-template-columns:1fr;}}
+  .sys-card{background:var(--paper); padding:30px 30px 26px;}
+  .sys-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;}
+  .sys-id{font-family:var(--font-mono); font-size:11px; color:#8a9a90;}
+  .sys-title{font-family:var(--font-display); font-size:19px; font-weight:600; color:var(--pine); margin:4px 0 10px; line-height:1.25;}
+  .sys-desc{font-size:13.5px; color:#5b6c62; line-height:1.6;}
+  .sys-pill{
+    font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:3px 8px; border-radius:20px; background:rgba(76,139,99,0.1); color:var(--fairway); border:1px solid rgba(76,139,99,0.3);
+    white-space:nowrap;
+  }
+
+  /* ---------- CREDENTIALS (education + certs) ---------- */
+  .cred-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px;}
+  @media (max-width:800px){.cred-grid{grid-template-columns:1fr; gap:40px;}}
+  .cred-h{font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fairway); margin-bottom:20px;}
+  .cred-row{display:flex; justify-content:space-between; gap:16px; padding:16px 0; border-top:1px solid var(--line-dark);}
+  .cred-row:last-child{border-bottom:1px solid var(--line-dark);}
+  .cred-name{font-weight:600; font-size:14.5px; color:var(--pine);}
+  .cred-sub{font-size:12.5px; color:#7c8c82; margin-top:2px;}
+  .cred-date{font-family:var(--font-mono); font-size:12px; color:#8a9a90; white-space:nowrap; padding-top:2px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    background:var(--pine-deep); color:var(--paper);
+    padding:96px 0 40px;
+  }
+  .contact-lede{
+    font-family:var(--font-display); font-weight:600;
+    font-size:clamp(30px,4.6vw,52px); line-height:1.08; max-width:760px; letter-spacing:-0.01em;
+  }
+  .contact-lede em{font-style:italic; color:var(--fairway-lt); font-weight:400;}
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:40px;
+    margin-top:48px; padding-top:32px; border-top:1px solid var(--line);
+  }
+  .contact-block h5{font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fairway-lt); margin-bottom:10px; opacity:0.8;}
+  .contact-block a, .contact-block div{font-size:15px; color:var(--paper-dim);}
+  .contact-block a:hover{color:var(--fairway-lt);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    margin-top:64px; padding-top:24px; border-top:1px solid var(--line);
+    font-family:var(--font-mono); font-size:11px; color:var(--paper-dim); opacity:0.5;
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.04em;
+    background:var(--fairway); color:#0B1F17; font-weight:600;
+    padding:13px 22px; border-radius:4px; margin-top:36px;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover{background:var(--brass-lt); transform:translateY(-1px);}
+  .btn svg{width:14px; height:14px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-mark"><span class="dot"></span>KDS / SYSTEMS.LOG</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#systems">Systems</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Dasmariñas City, Cavite — Available for opportunities</div>
+    <h1 class="name">Kurt Dex Salva<br><em>keeps the systems running.</em></h1>
+    <p class="role-line">IT Specialist and self-taught systems developer. <strong>I build the internal tools golf club operations run on</strong> — helpdesk platforms, monitoring dashboards, and the sites and spreadsheets in between.</p>
+    <div class="hero-meta">
+      <span>✉ <b>kurtdex430@gmail.com</b></span>
+      <span>☎ <b>+63 921 750 8281</b></span>
+      <span>🎓 <b>BS Information Technology</b>, STI College Dasma</span>
+    </div>
+  </div>
+
+  <div class="status-strip">
+    <div class="wrap">
+      <div class="status-strip-head">Systems built &amp; maintained · live overview</div>
+    </div>
+    <div class="wrap" style="padding:0;">
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="sc-top"><span class="sc-name">Service Request Tracker</span><span class="pill"><i></i>Live</span></div>
+          <div class="sc-uptime">01</div>
+          <div class="sc-label">PHP helpdesk platform, custom-built</div>
+        </div>
+        <div class="status-card">
+          <div class="sc-top"><span class="sc-name">Asset Monitoring System</span><span class="pill"><i></i>Live</span></div>
+          <div class="sc-uptime">02</div>
+          <div class="sc-label">Club equipment &amp; inventory tracking</div>
+        </div>
+        <div class="status-card">
+          <div class="sc-top"><span class="sc-name">Practice Range Monitor</span><span class="pill"><i></i>Live</span></div>
+          <div class="sc-uptime">03</div>
+          <div class="sc-label">Range usage &amp; ball-count tracking</div>
+        </div>
+        <div class="status-card">
+          <div class="sc-top"><span class="sc-name">Club Website</span><span class="pill"><i></i>Live</span></div>
+          <div class="sc-uptime">04</div>
+          <div class="sc-label">The Orchard Golf and Country Club</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="on-paper" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">00</span>
+      <h2 class="section-title">About</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-body">
+      <div>
+        <p class="about-lede">I like taking a manual, paper-trail process and turning it into <em>something that just works</em> — quietly, in the background, without anyone having to think about it.</p>
+        <p class="about-sub">That's been the throughline of my work at The Orchard Golf and Country Club: replacing spreadsheets and walk-in requests with systems that track themselves. I handle system administration and technical support day to day, and build the tools in between — from a full helpdesk platform to Excel automation for the accounting team. Before that, I designed and built websites at a digital agency, so I bring both the engineering and the interface side to everything I build.</p>
+        <a class="btn" href="mailto:kurtdex430@gmail.com">
+          Start a conversation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="stack-box">
+        <h4>Toolkit</h4>
+        <div class="stack-list">
+          <span>PHP</span><span>MySQL</span><span>JavaScript</span><span>VBA</span>
+          <span>WordPress / Elementor</span><span>Adobe XD</span><span>Photoshop</span>
+          <span>Illustrator</span><span>WAMP</span><span>HESK</span><span>SAP Business One</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-paper" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">OCT 2024 —<br>PRESENT</div>
+      <div>
+        <div class="exp-role">IT Specialist</div>
+        <div class="exp-org">The Orchard Golf and Country Club</div>
+        <p class="exp-desc">Developed and maintained internal systems using AI-assisted tools for code optimization and debugging. Manage website content, provide technical support, and handle system administration across the club. Support event setup and help ensure ISO 9001 compliance.</p>
+        <div class="exp-tags">
+          <span>System Administration</span><span>PHP Development</span><span>ISO 9001</span><span>Technical Support</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">SEPT 2023 —<br>FEB 2024</div>
+      <div>
+        <div class="exp-role">Web Developer</div>
+        <div class="exp-org">Archicoders DigitalInc.</div>
+        <p class="exp-desc">Designed and redesigned website interfaces using Adobe XD. Created mockups and logos using Adobe Photoshop and Illustrator, and developed responsive websites using Elementor in WordPress.</p>
+        <div class="exp-tags">
+          <span>Adobe XD</span><span>WordPress</span><span>Elementor</span><span>UI Design</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="on-paper" id="systems">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Systems &amp; Projects</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="sys-grid">
+      <div class="sys-card">
+        <div class="sys-top"><span class="sys-id">SYS · 01</span><span class="sys-pill">Internal Tool</span></div>
+        <div class="sys-title">Service Request Tracker System</div>
+        <p class="sys-desc">A custom-built PHP helpdesk platform for logging, approving, and resolving internal service requests — with role-based approval flows, staff ratings, and business-hours SLA tracking.</p>
+      </div>
+      <div class="sys-card">
+        <div class="sys-top"><span class="sys-id">SYS · 02</span><span class="sys-pill">Monitoring</span></div>
+        <div class="sys-title">Asset Monitoring System</div>
+        <p class="sys-desc">Tracks club equipment and inventory in real time, replacing manual logs with a centralized record of asset status and location.</p>
+      </div>
+      <div class="sys-card">
+        <div class="sys-top"><span class="sys-id">SYS · 03</span><span class="sys-pill">Monitoring</span></div>
+        <div class="sys-title">Practice Range Monitoring System</div>
+        <p class="sys-desc">Monitors practice range activity and usage, giving staff visibility into range traffic without walking the floor.</p>
+      </div>
+      <div class="sys-card">
+        <div class="sys-top"><span class="sys-id">SYS · 04</span><span class="sys-pill">Web</span></div>
+        <div class="sys-title">The Orchard Golf and Country Club Website</div>
+        <p class="sys-desc">Maintains and updates the club's public-facing website — content, structure, and day-to-day fixes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-paper" id="credentials">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Credentials</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="cred-grid">
+      <div>
+        <div class="cred-h">Education</div>
+        <div class="cred-row">
+          <div>
+            <div class="cred-name">BS in Information Technology</div>
+            <div class="cred-sub">STI College Dasma</div>
+          </div>
+          <div class="cred-date">2019 – 2023</div>
+        </div>
+        <div class="cred-row">
+          <div>
+            <div class="cred-name">Secondary Education</div>
+            <div class="cred-sub">Congressional Integrated High School</div>
+          </div>
+          <div class="cred-date">2011 – 2019</div>
+        </div>
+        <div class="cred-row">
+          <div>
+            <div class="cred-name">Primary Education</div>
+            <div class="cred-sub">Sabang Elementary School</div>
+          </div>
+          <div class="cred-date">2005 – 2011</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cred-h">Certifications</div>
+        <div class="cred-row">
+          <div>
+            <div class="cred-name">CompTIA A+ Certification</div>
+            <div class="cred-sub">Core IT support &amp; hardware</div>
+          </div>
+          <div class="cred-date">Feb 2026</div>
+        </div>
+        <div class="cred-row">
+          <div>
+            <div class="cred-name">Go Crayons Web Development</div>
+            <div class="cred-sub">Certificate of completion</div>
+          </div>
+          <div class="cred-date">May 2023</div>
+        </div>
+        <div class="cred-row">
+          <div>
+            <div class="cred-name">SAP Business One — Basics</div>
+            <div class="cred-sub">Certificate of completion</div>
+          </div>
+          <div class="cred-date">Mar 2021</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--fairway-lt);">Get in touch</div>
+    <h2 class="contact-lede">Have a system that needs<br><em>building — or fixing?</em></h2>
+
+    <div class="contact-row">
+      <div class="contact-block">
+        <h5>Email</h5>
+        <a href="mailto:kurtdex430@gmail.com">kurtdex430@gmail.com</a>
+      </div>
+      <div class="contact-block">
+        <h5>Phone</h5>
+        <div>+63 921 750 8281</div>
+      </div>
+      <div class="contact-block">
+        <h5>Location</h5>
+        <div>Dasmariñas City, Cavite, PH</div>
+      </div>
+      <div class="contact-block">
+        <h5>Languages</h5>
+        <div>English · Filipino</div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Kurt Dex Salva</span>
+      <span>References available on request</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
